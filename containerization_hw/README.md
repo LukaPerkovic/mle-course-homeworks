@@ -1,4 +1,4 @@
-# Docker container for the StarSpace model
+#  Docker container for the StarSpace model
 
 To build a Docker image, run the following command:
 
