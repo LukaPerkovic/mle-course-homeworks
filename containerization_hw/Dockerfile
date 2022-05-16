@@ -4,7 +4,6 @@ RUN     apt-get update && \
 	wget https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.zip && \
 	unzip boost_1_79_0.zip && \
 	mv boost_1_79_0 /usr/local/bin && \
-
 	git clone https://github.com/facebookresearch/Starspace.git && \
 	cd Starspace && \
 	make && \
