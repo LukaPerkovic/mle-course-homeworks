@@ -8,6 +8,5 @@ RUN     apt-get update && \
 	git clone https://github.com/facebookresearch/Starspace.git && \
 	cd Starspace && \
 	make && \
-	./starspace train -trainFile ./volume/starspace_input_file.txt -model output && \
 	echo "DONE!" 
 	
