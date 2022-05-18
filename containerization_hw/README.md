@@ -12,7 +12,7 @@ docker build -t nlp/starspace \
 To run a container, train the model and receive a word embedding file (output.tsv), run the following command:
 
 ```
-docker run -v "$(pwd)/volume:/data nlp/starspace \
+docker run -v $(pwd)/volume:/data nlp/starspace \
 Starspace/starspace train -trainFile /data/starspace_input_file.txt -model data/output
 
 ```
