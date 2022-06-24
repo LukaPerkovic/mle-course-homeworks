@@ -1,0 +1,3 @@
+#!/home/luka/mle-course-homeworks/data_governance_hw/forest/bin/python3
+from numba.pycc import main
+main()
