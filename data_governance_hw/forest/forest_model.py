@@ -106,10 +106,12 @@ class ActualTreeModel:
 
 
 
+if __name__ == '__main__':
+	filepath = 'train.csv'
 
-tree = ActualTreeModel()
-tree.load_data('train.csv')
-tree.set_pipeline(scaler, model)
-score = tree.get_score()
-print(score)
-tree.generate_feature_importance_graph()
+	tree = ActualTreeModel()
+	tree.load_data(filepath)
+	tree.set_pipeline(scaler, model)
+	score = tree.get_score()
+	print(score)
+	tree.generate_feature_importance_graph()
