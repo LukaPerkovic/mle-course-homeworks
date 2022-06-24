@@ -113,5 +113,6 @@ if __name__ == '__main__':
 	tree.load_data(filepath)
 	tree.set_pipeline(scaler, model)
 	score = tree.get_score()
-	print(score)
+	with open('metrics.txt', 'w') as f:
+		f.write(f'Model score: {round(score,2)}')
 	tree.generate_feature_importance_graph()
