@@ -1,8 +1,14 @@
 name: model-actual-tree
-on: [push]
+on:
+  push:
+    branches:
+     - 'experiment'
 jobs:
   run:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./data_governance_hw/forest/
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -11,9 +17,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd data_governance_hw/forest/
           source ./bin/activate
-          pwd
           pip install -r requirements.txt
           python forest_model.py rf standard
           cat metrics.txt >> report.md
