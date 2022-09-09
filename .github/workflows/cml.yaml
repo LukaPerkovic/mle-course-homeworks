@@ -12,7 +12,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd data_governance_hw/forest/
-          source .bin/activate
+          source ./bin/activate
           pip install -r requirements.txt
           python forest_model.py rf standard
           cat metrics.txt >> report.md
