@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./data_governance_hw/forest/
+        working-directory: ./data_governance_hw/forest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
