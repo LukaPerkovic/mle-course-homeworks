@@ -11,8 +11,9 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd data_governance_hw/
           pip3 install -r requirements.txt
-          python3 forest_model.py
+          python3 forest_model.py rf standard
           cat metrics.txt >> report.md
-          cml publish plot.png --md >> report.md
+          cml publish feature_importance.png --md >> report.md
           cml send-comment report.md
