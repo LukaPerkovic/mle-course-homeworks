@@ -25,6 +25,7 @@ jobs:
           source ./bin/activate
           python -m pip install -r requirements.txt
           python forest_model.py rf standard
+          deactivate          
 
           echo "## Model metrics:" > report.md
           cat metrics.txt >> report.md
