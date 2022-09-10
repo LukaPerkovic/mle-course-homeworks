@@ -1,4 +1,6 @@
 [core]
-    remote = data_gov_remote
+    remote = myremote
 ['remote "data_gov_remote"']
     url = s3://mle-epam-course/data_governance/
+['remote "myremote"']
+    url = gdrive://1gOZeueibKf-kMBk-SwK21PuEPZt6_Q-i

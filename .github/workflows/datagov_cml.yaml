@@ -1,0 +1,35 @@
+name: model-actual-tree
+on:
+  push:
+    branches:
+     - 'experiment'
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./data_governance_hw/forest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          source ./bin/activate
+          python -m pip install -r requirements.txt
+          black *.py
+          pylint *.py
+          python forest_model.py rf standard
+          deactivate          
+
+          echo "## Model metrics:" > report.md
+          cat metrics.txt >> report.md
+          cml publish feature_importance.png --md >> report.md
+          cml send-comment report.md
