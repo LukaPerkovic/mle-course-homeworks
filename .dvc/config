@@ -1,0 +1,4 @@
+[core]
+    remote = data_gov_remote
+['remote "data_gov_remote"']
+    url = s3://mle-epam-course/data_governance/
