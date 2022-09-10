@@ -9,7 +9,7 @@ permissions:
   issues: write
 
 jobs:
-  run:
+  data_governance:
     runs-on: ubuntu-latest
     defaults:
       run:
