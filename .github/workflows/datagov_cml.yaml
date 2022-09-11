@@ -24,6 +24,7 @@ jobs:
         run: |
           source ./bin/activate
           python -m pip install -r requirements.txt
+          dvc pull
           black *.py
           pylint *.py
           python forest_model.py rf standard
