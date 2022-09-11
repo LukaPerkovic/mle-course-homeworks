@@ -1,3 +1,8 @@
+"""
+Model for classfying the type of tree and providing the feature importance graph and a text file.
+It accpets arguments for type of model, and type of standardization.
+"""
+
 import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -12,7 +17,7 @@ from sklearn.inspection import permutation_importance
 
 
 parser = argparse.ArgumentParser(description="Experiments with model")
-parser.add_argument("model", type=str, help="rf or svc")
+parser.add_argument("model", type=str, help="rf or knn")
 parser.add_argument("scale", type=str, help="standard or minmax")
 args = parser.parse_args()
 
@@ -20,9 +25,7 @@ model = args.model
 scaler = args.scale
 
 
-# pylint: disable=W0311
-# pylint: disable=C0103
-
+# pylint: disable=W0311,C0103,C0115,C0116,R0902
 
 class ActualTreeModel:
     def __init__(self):
@@ -39,8 +42,9 @@ class ActualTreeModel:
         self.pipeline = None
         self.score = None
 
-    def load_data(self, path_to_data, type="csv"):
-        if type == "csv":
+    def load_data(self, path_to_data, filetype="csv"):
+
+        if filetype == "csv":
             self.df = pd.read_csv(path_to_data)
 
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
@@ -92,11 +96,13 @@ class ActualTreeModel:
         )
 
     def get_score(self):
+
         self.pipeline.fit(self.X_train, self.y_train)
         self.score = self.pipeline.score(self.X_test, self.y_test)
         return self.score
 
-    def generate_feature_importance_graph(self, pull_existing_test_data="yes"):
+    def generate_feature_importance_graph(self):
+
         mdl = self.pipeline.steps[-1][1]
         X_test_pipe = self.col_transform.transform(self.X_test)
 
