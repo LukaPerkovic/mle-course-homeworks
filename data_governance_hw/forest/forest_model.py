@@ -119,9 +119,11 @@ class ActualTreeModel:
 
 
 if __name__ == "__main__":
-    import os
-    print(os.getcwd())
+
     filepath = "train.csv"
+
+    import os
+    print(os.listdir())
 
     tree = ActualTreeModel()
     tree.load_data(filepath)
