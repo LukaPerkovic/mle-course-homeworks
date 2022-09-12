@@ -31,10 +31,10 @@ jobs:
           pylint *.py
           python forest_model.py rf standard
           deactivate
-      -name: Create CML report
+      - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       run: |
+        run: |
 
           echo "## Model metrics:" > report.md
           cat metrics.txt >> report.md
