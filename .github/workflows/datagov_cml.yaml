@@ -24,8 +24,6 @@ jobs:
         run: |
           source ./bin/activate
           python -m pip install -r requirements.txt
-          python -m pip install dvc
-          python -m pip install 'dvc-gdrive'
           dvc pull
           black *.py
           pylint *.py
