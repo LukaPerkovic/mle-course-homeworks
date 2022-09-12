@@ -20,15 +20,21 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Train model
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET+ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           source ./bin/activate
           python -m pip install -r requirements.txt
-          dvc pull
+          dvc pull train.csv --run-cache
           black *.py
           pylint *.py
           python forest_model.py rf standard
-          deactivate          
+          deactivate
+      -name: Create CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       run: |
 
           echo "## Model metrics:" > report.md
           cat metrics.txt >> report.md
