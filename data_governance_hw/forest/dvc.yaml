@@ -1,0 +1,38 @@
+stages:
+  preprocess:
+    cmd: python ./src/preprocess.py trees.csv
+    deps:
+    - data/trees.csv
+    - src/preprocess.py
+    params:
+    - preprocess.scaler
+    outs:
+    - data/train.csv
+    - data/test.csv
+  train:
+    cmd: python ./src/train.py
+    deps:
+    - data/train.csv
+    - src/train.py
+    params:
+    - train.model_type
+    outs:
+    - models/model.pkl
+  evaluate:
+    cmd: python ./src/evaluate.py
+    deps:
+    - data/test.csv
+    - models/model.pkl
+    - src/evaluate.py
+    metrics:
+    - results/metrics.txt:
+        cache: false
+  report:
+    cmd: python ./src/report.py
+    deps:
+    - data/test.csv
+    - models/model.pkl
+    - src/evaluate.py
+    outs:
+    - results/feature_importance.png
+  

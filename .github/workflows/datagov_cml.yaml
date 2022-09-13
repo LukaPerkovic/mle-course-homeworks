@@ -26,17 +26,20 @@ jobs:
         run: |
           source ./bin/activate
           python -m pip install -r requirements.txt
-          dvc pull train.csv --run-cache
-          black *.py
-          pylint *.py
-          python forest_model.py rf standard
+          dvc pull 
+          black src/*.py
+          pylint src/*.py
+          dvc repro
           deactivate
       - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git fetch --prune
+  
 
           echo "## Model metrics:" > report.md
-          cat metrics.txt >> report.md
-          cml publish feature_importance.png --md >> report.md
+          cat results/metrics.txt >> report.md
+          dvc metrics diff --show-md main >> report.md
+          cml publish results/feature_importance.png --md >> report.md
           cml send-comment report.md
