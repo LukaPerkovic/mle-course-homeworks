@@ -29,7 +29,7 @@ jobs:
         run: |
           source ./bin/activate
           python -m pip install -r requirements.txt
-          dvc pull 
+          dvc pull --run-cache
           black src/*.py
           pylint src/*.py
           dvc repro
