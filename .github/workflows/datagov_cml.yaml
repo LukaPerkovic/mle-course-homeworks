@@ -40,7 +40,6 @@ jobs:
         run: |
           git fetch --prune
   
-
           echo "## Model metrics:" > report.md
           cat results/metrics.txt >> report.md
           dvc metrics diff --show-md main >> report.md
