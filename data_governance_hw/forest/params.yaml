@@ -1,0 +1,4 @@
+preprocess:
+  scaler: minmax
+train:
+  model_type: rf
