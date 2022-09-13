@@ -27,11 +27,8 @@ jobs:
           AWS_SECRET+ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "$(pwd)"
           source ./bin/activate
-          echo "$(pwd)"
           python -m pip install -r requirements.txt
-          echo "$(pwd)"
           dvc pull 
           black src/*.py
           pylint src/*.py
