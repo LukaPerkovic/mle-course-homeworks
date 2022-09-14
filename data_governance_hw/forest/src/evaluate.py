@@ -3,23 +3,20 @@
 
 import pickle
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-
 
 
 def load_model():
 
     with open('./models/model.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
-    
+
     return loaded_model
+
 
 def get_accuracy(model, X, y):
     y_pred = model.predict(X)
     score = [1 if y_pred[i] == y[i] else 0 for i in range(len(y))]
     return round(sum(score) / len(score), 2)
-
 
 
 test = pd.read_csv('./data/test.csv')

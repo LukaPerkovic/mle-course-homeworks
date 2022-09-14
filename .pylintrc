@@ -157,7 +157,7 @@ disable=raw-checker-failed,
         missing-module-docstring,
         redefined-outer-name,
         consider-using-with,
-        unspecified-encoding
+        unspecified-encoding,
         duplicate-code
 
 # Enable the message, report, category or checker with the given id(s). You can

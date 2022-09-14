@@ -2,13 +2,11 @@
 
 import argparse
 import os
-import numpy as np
 import yaml
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
-from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 
 
@@ -28,7 +26,7 @@ def load_data(path_to_data, filetype="csv"):
     return dataframe
 
 
-def transform_data(df, filetype="csv"):
+def transform_data(df):
 
     if scaler_type == "standard":
         scaler = StandardScaler()
