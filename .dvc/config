@@ -2,6 +2,3 @@
     remote = datagov_remote
 ['remote "datagov_remote"']
     url = s3://mle-epam-course/data_governance/
-    credentialpath = /home/luka/.aws/credentials
-    access_key_id = AKIAU2DBHKKCUNSOYFHT
-    secret_access_key = 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
