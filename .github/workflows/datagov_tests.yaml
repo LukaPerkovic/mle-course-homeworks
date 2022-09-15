@@ -25,7 +25,7 @@ jobs:
           python -m pip install -r requirements.txt
           python -m unittest discover tests/
           echo "## Data Governance Coverage" > test_report.md
-          coverage run -m discover tests/
+          coverage run -m unittest  discover tests/
           coverage report -m >> test_report.md
           cml send-comment test_report.md
           deactivate
