@@ -1,9 +1,7 @@
-# pylint: disable=W0311,C0103,C0115,C0116,R0902
-
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.inspection import permutation_importance
-from evaluate import load_model
+from src.evaluate import load_model
 
 
 def generate_feature_importance_graph(model, test_data, test_target):

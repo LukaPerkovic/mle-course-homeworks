@@ -7,10 +7,6 @@ on:
     branches:
      - master
 
-  contents: write
-  actions: write
-  issues: write
-
 jobs:
   data_governance_testing:
     runs-on: ubuntu-latest
