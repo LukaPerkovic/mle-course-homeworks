@@ -1,6 +1,3 @@
-# pylint: disable=W0311,C0103,C0115,C0116,R0902
-
-
 import pickle
 import pandas as pd
 
@@ -19,11 +16,12 @@ def get_accuracy(model, X, y):
     return round(sum(score) / len(score), 2)
 
 
-test = pd.read_csv('./data/test.csv')
-model = load_model()
+if __name__ == "__main__":
+    test = pd.read_csv('./data/test.csv')
+    model = load_model()
 
 
-metrics = get_accuracy(model, test.drop('Cover_Type', axis=1), test.Cover_Type)
+    metrics = get_accuracy(model, test.drop('Cover_Type', axis=1), test.Cover_Type)
 
-with open("./results/metrics.txt", "w", encoding="utf-8") as f:
-    f.write(f"Model score: {metrics}")
+    with open("./results/metrics.txt", "w", encoding="utf-8") as f:
+        f.write(f"Model score: {metrics}")

@@ -1,0 +1,36 @@
+name: test-actual-tree
+on:
+  push:
+    branches:
+     - experiment
+  pull_request:
+    branches:
+     - master
+
+  contents: write
+  actions: write
+  issues: write
+
+jobs:
+  data_governance_testing:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./data_governance_hw/forest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
+      - name: Unit testing
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          source ./bin/activate
+          python -m pip install -r requirements.txt
+          python -m unittest discover tests/
+          echo "## Data Governance Coverage" > test_report.md
+          coverage run -m discover tests/
+          coverage report -m >> test_report.md
+          cml send-comment test_report.md
+          deactivate
+

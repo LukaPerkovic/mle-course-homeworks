@@ -29,9 +29,10 @@ def train_model(dataframe, target, model_type):
     return model
 
 
-df = pd.read_csv('./data/train.csv', delimiter=',')
+if __name__ == "__main__":
+    df = pd.read_csv('./data/train.csv', delimiter=',')
 
-trained_model = train_model(df, 'Cover_Type', model_type_arg)
+    trained_model = train_model(df, 'Cover_Type', model_type_arg)
 
-with open('./models/model.pkl', 'wb') as file:
-    pickle.dump(trained_model, file)
+    with open('./models/model.pkl', 'wb') as file:
+        pickle.dump(trained_model, file)

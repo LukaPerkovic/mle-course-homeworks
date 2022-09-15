@@ -19,7 +19,8 @@ def generate_feature_importance_graph(model, test_data, test_target):
     plt.tight_layout()
     plt.savefig("./results/feature_importance.png", dpi=120)
 
-test = pd.read_csv('./data/test.csv')
-model = load_model()
+if __name__ == "__main__":
+    test = pd.read_csv('./data/test.csv')
+    model = load_model()
 
-generate_feature_importance_graph(model, test.drop('Cover_Type', axis=1), test.Cover_Type)
+    generate_feature_importance_graph(model, test.drop('Cover_Type', axis=1), test.Cover_Type)
