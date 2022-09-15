@@ -1,0 +1,47 @@
+name: model-actual-tree
+on:
+  push:
+    branches:
+     - experiment
+  pull_request:
+    branches:
+     - master
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+jobs:
+  data_governance:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./data_governance_hw/forest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          source ./bin/activate
+          python -m pip install -r requirements.txt
+          dvc pull --run-cache
+          black src/*.py
+          pylint src/*.py
+          dvc repro
+          deactivate
+      - name: Create CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --prune
+  
+          echo "## Model metrics:" > report.md
+          cat results/metrics.txt >> report.md
+          dvc metrics diff --show-md main >> report.md
+          cml publish results/feature_importance.png --md >> report.md
+          cml send-comment report.md
