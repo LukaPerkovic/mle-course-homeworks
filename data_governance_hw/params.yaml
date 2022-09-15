@@ -1,0 +1,4 @@
+preprocess:
+  scaler: standard
+train:
+  model_type: rf

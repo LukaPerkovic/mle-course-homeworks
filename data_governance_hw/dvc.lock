@@ -1,0 +1,69 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python ./src/preprocess.py trees.csv
+    deps:
+    - path: data/trees.csv
+      md5: c11ca92c93632981eeaefe7f2a98f960
+      size: 2029405
+    - path: src/preprocess.py
+      md5: 9eabc5273120ff02eb8abb505d7138a1
+      size: 2458
+    params:
+      params.yaml:
+        preprocess.scaler: minmax
+    outs:
+    - path: data/test.csv
+      md5: f71bbedc56f434ab55c84dd6b47f8a48
+      size: 1736360
+    - path: data/train.csv
+      md5: b33320e3839bb06915025fe171182e22
+      size: 3356188
+  train:
+    cmd: python ./src/train.py
+    deps:
+    - path: data/train.csv
+      md5: b33320e3839bb06915025fe171182e22
+      size: 3356188
+    - path: src/train.py
+      md5: 76e87768d0f802f8c1b856ad4953b1d9
+      size: 995
+    params:
+      params.yaml:
+        train.model_type: rf
+    outs:
+    - path: models/model.pkl
+      md5: 094a93b43b6a1601ff50d26f69d67732
+      size: 26616607
+  evaluate:
+    cmd: python ./src/evaluate.py
+    deps:
+    - path: data/test.csv
+      md5: f71bbedc56f434ab55c84dd6b47f8a48
+      size: 1736360
+    - path: models/model.pkl
+      md5: 094a93b43b6a1601ff50d26f69d67732
+      size: 26616607
+    - path: src/evaluate.py
+      md5: 7b42f24f1864e569051daad3c7cee911
+      size: 751
+    outs:
+    - path: results/metrics.txt
+      md5: 58f5eaa93d0fc7dbc773bc34574a3974
+      size: 17
+  report:
+    cmd: python ./src/report.py
+    deps:
+    - path: data/test.csv
+      md5: f71bbedc56f434ab55c84dd6b47f8a48
+      size: 1736360
+    - path: models/model.pkl
+      md5: 094a93b43b6a1601ff50d26f69d67732
+      size: 26616607
+    - path: src/evaluate.py
+      md5: 7b42f24f1864e569051daad3c7cee911
+      size: 751
+    outs:
+    - path: results/feature_importance.png
+      md5: a3e67b49fa105e41e8864f37a214ec0c
+      size: 37867
