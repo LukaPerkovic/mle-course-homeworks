@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.inspection import permutation_importance
-from src.evaluate import load_model
+from evaluate import load_model
 
 
 def generate_feature_importance_graph(model, test_data, test_target):
