@@ -4,11 +4,11 @@ import warnings
 import pandas as pd
 import numpy as np
 
-from sklearn_regressor.load import BikeRentalDataLoader
+from load import BikeRentalDataLoader
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.ensemble import IsolationForest, RandomForestRegressor
+from sklearn.ensemble import IsolationForest, RandomForestRegressor, GradientBoostingRegressor
 
 import mlflow
 import mlflow.sklearn
@@ -28,7 +28,7 @@ class BikeRegressor:
 
     @staticmethod
     def preprocess(dataframe: pd.DataFrame) -> dict:
-        dataframe.drop(["casual", "registered"], axis=1, inplace=True)
+        dataframe.drop(["dteday", "casual", "registered"], axis=1, inplace=True)
         X = dataframe.drop("cnt", axis=1)
         y = dataframe["cnt"]
 
@@ -61,24 +61,24 @@ class BikeRegressor:
         self,
         X_train: pd.DataFrame,
         y_train: pd.DataFrame,
-        n_estimators: int,
-        max_depth: int,
-        min_samples_split: int,
+        model: str,
+        hyperparameter: dict
     ) -> True:
 
-        model = RandomForestRegressor(
-            n_estimators=n_estimators,
-            max_depth=max_depth,
-            min_samples_split=min_samples_split,
-        )
+        if model == 'randomforest':
+
+            model = RandomForestRegressor(
+                n_estimators=int(list(hyperparameter.values())[0]))
+        else:
+            model = GradientBoostingRegressor(learning_rate=list(hyperparameter.values())[0])
 
         self.model = model.fit(X_train, y_train)
 
         return True
 
-    def score(self, X_test: pd.DataFrame, y_test: pd.DataFrame) -> float:
+    def score_model(self, X_test: pd.DataFrame, y_test: pd.DataFrame) -> float:
 
-        y_pred = self.model(X_test)
+        y_pred = self.model.predict(X_test)
         self.score = mean_absolute_error(y_test, y_pred)
 
         return self.score
@@ -86,24 +86,28 @@ class BikeRegressor:
 
 def run_randomforest_regression(**arguments):
 
+
+
     bike_rental_data = BikeRentalDataLoader()
     bike_regressor = BikeRegressor()
 
     data = bike_regressor.preprocess(dataframe=bike_rental_data.get_data())
-    data = bike_regressor.remove_outliers(data)
+    if arguments.get('outliers'):
+        data = bike_regressor.remove_outliers(data)
 
-    bike_regressor.train_model(
+    bike_regressor.model_fitted = bike_regressor.train_model(
         data.get("X_train"),
         data.get("y_train"),
-        arguments.get("n_estimators"),
-        arguments.get("max_depth"),
-        arguments.get("min_samples_split"),
+        arguments.get('model'),
+        arguments.get('hyperparameter')
     )
 
     if bike_regressor.model_fitted:
-        score = bike_regressor.score(data.get("X_test"), data.get("y_test"))
+        score = bike_regressor.score_model(data.get("X_test"), data.get("y_test"))
     else:
-        logger("Model training process unsuccessful!")
+        
+        logger.error("Model training process unsuccessful!")
+        raise Exception
 
     return score, bike_regressor.model
 
@@ -112,20 +116,30 @@ if __name__ == "__main__":
 
     warnings.filterwarnings("ignore")
 
-    n_estimators = float(sys.argv[1]) if len(sys.argv) > 1 else 100
-    max_depth = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
-    min_samples_split = float(sys.argv[3]) if len(sys.argv) > 3 else 2
+    model = str(sys.argv[1]) if len(sys.argv) > 1 else 'randomforest'
+    hyperparameter = float(sys.argv[2]) if len(sys.argv) > 2 else 1
+    outliers = bool(sys.argv[3]) if len(sys.argv) > 3 else True
+
+
+    if model == 'randomforest':
+        hyperparam_dict = {"n_estimators": hyperparameter}
+    else:
+        hyperparam_dict = {"learning_rate": hyperparameter}
 
     with mlflow.start_run():
 
         mae, model = run_randomforest_regression(
-            n_estimators, max_depth, min_samples_split
+                                            model=model,
+                                            hyperparameter=hyperparam_dict,
+                                            outliers=outliers
         )
 
-        mlflow.log_param("n_estimators", n_estimators)
-        mlflow.log_param("max_depth", max_depth)
-        mlflow.log_param("min_samples_split", min_samples_split)
-        mlflow.log_metric("mae", mae)
+        print(f'MAE score is: {mae}')
+
+        mlflow.log_param("Model", model)
+        mlflow.log_param(f"{list(hyperparam_dict.keys())[0]}", list(hyperparam_dict.values())[0])
+        mlflow.log_param("Remove outliers", outliers)
+        mlflow.log_metric("MAE", mae)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 

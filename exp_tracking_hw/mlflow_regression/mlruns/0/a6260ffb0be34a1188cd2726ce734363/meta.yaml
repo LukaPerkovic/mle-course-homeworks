@@ -1,0 +1,15 @@
+artifact_uri: file:///home/luka/mle-course-homeworks/exp_tracking_hw/mlflow_regression/mlruns/0/a6260ffb0be34a1188cd2726ce734363/artifacts
+end_time: 1664374413195
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: a6260ffb0be34a1188cd2726ce734363
+run_uuid: a6260ffb0be34a1188cd2726ce734363
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1664374407143
+status: 4
+tags: []
+user_id: luka
