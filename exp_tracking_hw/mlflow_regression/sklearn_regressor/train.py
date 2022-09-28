@@ -125,6 +125,7 @@ if __name__ == "__main__":
         hyperparam_dict = {"n_estimators": hyperparameter}
     else:
         hyperparam_dict = {"learning_rate": hyperparameter}
+    
 
     with mlflow.start_run():
 
@@ -136,22 +137,25 @@ if __name__ == "__main__":
 
         print(f'MAE score is: {mae}')
 
+    #     # MLFLOW part
+
+
         mlflow.log_param("Model", model)
         mlflow.log_param(f"{list(hyperparam_dict.keys())[0]}", list(hyperparam_dict.values())[0])
         mlflow.log_param("Remove outliers", outliers)
         mlflow.log_metric("MAE", mae)
 
-        tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+        # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
-        # TODO Figure out how model registry works
-        if tracking_url_type_store != "file":
+        # # TODO Figure out how model registry works
+        # if tracking_url_type_store != "file":
 
-            # Register the model
-            # There are other ways to use the Model Registry, which depends on the use case,
-            # please refer to the doc for more information:
-            # https://mlflow.org/docs/latest/model-registry.html#api-workflow
-            mlflow.sklearn.log_model(
-                model, "model", registered_model_name="RandomForestRegressor"
-            )
-        else:
-            mlflow.sklearn.log_model(model, "model")
+        #     # Register the model
+        #     # There are other ways to use the Model Registry, which depends on the use case,
+        #     # please refer to the doc for more information:
+        #     # https://mlflow.org/docs/latest/model-registry.html#api-workflow
+        #     mlflow.sklearn.log_model(
+        #         model, "model", registered_model_name="RandomForestRegressor"
+        #     )
+        # else:
+        #     mlflow.sklearn.log_model(model, "model")
