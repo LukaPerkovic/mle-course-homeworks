@@ -116,21 +116,21 @@ if __name__ == "__main__":
 
     warnings.filterwarnings("ignore")
 
-    model = str(sys.argv[1]) if len(sys.argv) > 1 else 'randomforest'
+    model_name = str(sys.argv[1]) if len(sys.argv) > 1 else 'randomforest'
     hyperparameter = float(sys.argv[2]) if len(sys.argv) > 2 else 1
     outliers = bool(sys.argv[3]) if len(sys.argv) > 3 else True
 
 
-    if model == 'randomforest':
+    if model_name == 'randomforest':
         hyperparam_dict = {"n_estimators": hyperparameter}
     else:
         hyperparam_dict = {"learning_rate": hyperparameter}
     
-
+    mlflow.set_tracking_uri('http://127.0.0.1:5000')
     with mlflow.start_run():
 
         mae, model = run_randomforest_regression(
-                                            model=model,
+                                            model=model_name,
                                             hyperparameter=hyperparam_dict,
                                             outliers=outliers
         )
@@ -145,17 +145,14 @@ if __name__ == "__main__":
         mlflow.log_param("Remove outliers", outliers)
         mlflow.log_metric("MAE", mae)
 
+        
         # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
-        # # TODO Figure out how model registry works
+
         # if tracking_url_type_store != "file":
 
-        #     # Register the model
-        #     # There are other ways to use the Model Registry, which depends on the use case,
-        #     # please refer to the doc for more information:
-        #     # https://mlflow.org/docs/latest/model-registry.html#api-workflow
         #     mlflow.sklearn.log_model(
-        #         model, "model", registered_model_name="RandomForestRegressor"
+        #         model, "model", registered_model_name=f"{model_name}"
         #     )
         # else:
         #     mlflow.sklearn.log_model(model, "model")
