@@ -144,15 +144,3 @@ if __name__ == "__main__":
         mlflow.log_param(f"{list(hyperparam_dict.keys())[0]}", list(hyperparam_dict.values())[0])
         mlflow.log_param("Remove outliers", outliers)
         mlflow.log_metric("MAE", mae)
-
-        
-        # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
-
-
-        # if tracking_url_type_store != "file":
-
-        #     mlflow.sklearn.log_model(
-        #         model, "model", registered_model_name=f"{model_name}"
-        #     )
-        # else:
-        #     mlflow.sklearn.log_model(model, "model")
