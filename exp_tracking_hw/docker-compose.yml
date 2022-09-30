@@ -1,0 +1,12 @@
+version: "2.10"
+services:
+  server:
+    build: ./mlflow_server
+    ports:
+      - "5000:5000"
+    network_mode: host
+  client:
+    build: ./mlflow_regression
+    network_mode: host
+    depends_on:
+      - server
