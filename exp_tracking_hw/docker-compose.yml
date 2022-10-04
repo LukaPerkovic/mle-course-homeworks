@@ -28,10 +28,10 @@ services:
     build: ./mlflow_regression
     network_mode: host
     command: >
-      bash -c "python train.py randomforest 150 True
-      && python train.py randomforest 50 False
-      && python train.py gradientboost 0.5 True
-      && python train.py gradientboost 1.5 False"
+      bash -c "python train.py randomforest 150 exclude
+      && python train.py randomforest 50 include
+      && python train.py gradientboost 0.5 exclude
+      && python train.py gradientboost 1.5 include"
     depends_on:
       - server
 volumes:

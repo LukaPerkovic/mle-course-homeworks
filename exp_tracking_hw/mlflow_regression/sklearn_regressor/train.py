@@ -92,7 +92,7 @@ def run_randomforest_regression(**arguments):
     bike_regressor = BikeRegressor()
 
     data = bike_regressor.preprocess(dataframe=bike_rental_data.get_data())
-    if arguments.get('outliers'):
+    if arguments.get('outliers') == 'exclude':
         data = bike_regressor.remove_outliers(data)
 
     bike_regressor.model_fitted = bike_regressor.train_model(
@@ -117,9 +117,9 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
 
     try:
-        model_name = str(sys.argv[1])
+        model_name = str(sys.argv[1]).lower()
         hyperparameter = float(sys.argv[2])
-        outliers = bool(sys.argv[3])
+        outliers = str(sys.argv[3]).lower()
     except Exception:
         raise Exception('Wrong arguments in input')
 
