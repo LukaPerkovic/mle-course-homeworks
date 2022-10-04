@@ -9,6 +9,9 @@ Parameters:
 After editing the experiments, save and close the docker-compose.yml file.
 
 To run the mlflow server, run in the terminal
-docker compose up
+```docker compose up```
 
-After process is finished, open your browser to the localhost (127.0.0.1:5000) to see the results of the experiments in MLFlow
+After process is finished, open your browser to the localhost (127.0.0.1:5000) to see the results of the experiments in MLFlow.
+
+To decontruct containers after done using, exit the server with Ctrl+C, and then enter next line in terminal:
+```docker compose down```
