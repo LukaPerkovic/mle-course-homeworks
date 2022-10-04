@@ -1,0 +1,39 @@
+version: "2.10"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/run/postgresql:/var/run/postgresql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
+
+    links:
+        - server
+  server:
+    build: ./mlflow_server
+    ports:
+      - "5000:5000"
+    network_mode: host
+    command: mlflow server --backend-store-uri postgresql+psycopg2://postgres:postgres@localhost:5432 --default-artifact-root ./mlruns
+  client:
+    build: ./mlflow_regression
+    network_mode: host
+    command: >
+      bash -c "python train.py randomforest 150 exclude
+      && python train.py randomforest 50 include
+      && python train.py gradientboost 0.5 exclude
+      && python train.py gradientboost 1.5 include"
+    depends_on:
+      - server
+volumes:
+  db:
+    driver: local
