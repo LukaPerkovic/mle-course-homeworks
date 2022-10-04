@@ -1,6 +1,6 @@
-Navigate to the folder this read-me file is in (exp_tracking_hw)
-Experiments are preconfigured, and written down in docker-compose.yml file in the command line of client service.
-To add more experiemnts follow the format: python train.py <model> <parameter> <outliers>
+Navigate to the folder this read-me file is in (exp_tracking_hw). <br/>
+Experiments are preconfigured, and written down in docker-compose.yml file in the command line of client service. <br/>
+To add more experiemnts follow the format: python train.py \<model\> \<parameter> \<outliers\>
 Parameters:
 - Model - Can be 'randomforest' or 'gradientboost'
 - Parameter - If randomforest then integer for n_estimators should be set; If gradientboost then float for learning_rate should be set.
