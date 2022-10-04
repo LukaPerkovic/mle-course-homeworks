@@ -13,6 +13,9 @@ services:
       - "5432:5432"
     volumes:
       - /var/run/postgresql:/var/run/postgresql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
+
     links:
         - server
   server:
@@ -20,13 +23,17 @@ services:
     ports:
       - "5000:5000"
     network_mode: host
-    command: mlflow server --backend-store-uri mysql://localhost:5432 --default-artifact-root ./mlruns
+    command: mlflow server --backend-store-uri postgresql+psycopg2://postgres:postgres@localhost:5432 --default-artifact-root ./mlruns
   client:
     build: ./mlflow_regression
     network_mode: host
+    command: >
+      bash -c "python train.py randomforest 150 True
+      && python train.py randomforest 50 False
+      && python train.py gradientboost 0.5 True
+      && python train.py gradientboost 1.5 False"
     depends_on:
       - server
-    tty: true
 volumes:
   db:
     driver: local
