@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.10-slim
 EXPOSE 5000
-RUN pip install mlflow
-CMD ["mlflow", "server"]
+RUN apt-get update && \
+    python -m pip install -r requirements.txt

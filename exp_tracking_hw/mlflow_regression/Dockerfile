@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.10-slim
 COPY sklearn_regressor/ sklearn_regressor/ 
 WORKDIR /sklearn_regressor
 RUN apt-get update && \

@@ -116,9 +116,12 @@ if __name__ == "__main__":
 
     warnings.filterwarnings("ignore")
 
-    model_name = str(sys.argv[1]) if len(sys.argv) > 1 else 'randomforest'
-    hyperparameter = float(sys.argv[2]) if len(sys.argv) > 2 else 1
-    outliers = bool(sys.argv[3]) if len(sys.argv) > 3 else True
+    try:
+        model_name = str(sys.argv[1])
+        hyperparameter = float(sys.argv[2])
+        outliers = bool(sys.argv[3])
+    except Exception:
+        raise Exception('Wrong arguments in input')
 
 
     if model_name == 'randomforest':
@@ -144,3 +147,11 @@ if __name__ == "__main__":
         mlflow.log_param(f"{list(hyperparam_dict.keys())[0]}", list(hyperparam_dict.values())[0])
         mlflow.log_param("Remove outliers", outliers)
         mlflow.log_metric("MAE", mae)
+
+        tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+        if tracking_url_type_store != "file":
+            mlflow.sklearn.log_model(
+                model, "model", registered_model_name=f"{model_name}"
+            )
+        else:
+            mlflow.sklearn.log_model(model, f"{model_name}")
