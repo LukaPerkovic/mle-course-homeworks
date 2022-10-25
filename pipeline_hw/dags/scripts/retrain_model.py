@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 
-from scripts.handle_file import read_file
+from scripts.handle_data import load_data
 from scripts.handle_model import save_model
 
 
@@ -14,7 +14,7 @@ DATA_DIR '/data/'
 
 
 def train_model():
-	df = read_file(os.path.join(DATA_DIR,'data_batch_transformed'))
+	df = load_data()
 
 	cv = KFold(n_splits=10, random_state=1, shuffle=True)
 
@@ -30,7 +30,7 @@ def train_model():
 	percentage = str(int(round(scores,2) * 100))
 
 	actual_date = datetime.date.today().strftime('%Y%m%d')
-	trained = 't'
+	rtrained = 'rt'
 	filename = f'{model}_{trained}_{actual_date}_{percentage}'
 
 	save_model(filename)
