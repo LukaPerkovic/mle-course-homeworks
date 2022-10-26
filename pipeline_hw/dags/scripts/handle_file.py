@@ -6,7 +6,6 @@ DATA_DIR = '/data/'
 
 spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
 
-
 def read_file(file_name):
 	df = spark.read.format('csv').load(DATA_DIR, file_name)
 	return file_name
