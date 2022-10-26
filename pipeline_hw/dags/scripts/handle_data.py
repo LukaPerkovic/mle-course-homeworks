@@ -1,9 +1,13 @@
-import pandas as pd
+import pyspark
+findspark.init()
 
+import pandas as pd
 from sqlalchemy import create_engine
 
 from scripts.handle_file import load_file
 import utils.ml_pipeline_config as config
+
+from pyspark.sql import SparkSession
 
 
 db_engine = config.params['db_engine']

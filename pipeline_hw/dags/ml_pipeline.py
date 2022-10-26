@@ -1,5 +1,6 @@
 from airflow.models import DAG
 
+from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.utils.task_group import TaskGroup
@@ -18,42 +19,47 @@ with DAG(
 	default_args=default_args,
 	catchup=False) as dag:
 
+	#  task 1
+	preparing_environment = BashOperator(
+		task_id='preparing_environment',
+		bash_command="bash/prep_env.sh"
+		)
 
-	# task 1
+	# task 2
 	preprocessing_data = PythonOperator(
 		task_id='processing_data',
 		python_callable=preprocess_data
 		)
 
-	# task 2
+	# task 3
 	storing_data = PythonOperator(
 		task_id='storing_processed_data',
 		python_callable=store_data
 		)
 
-	# task 3
+	# task 4
 	with TaskGroup('training_and_retraining_the_model') as training_model:
 
-		# task 3.1
+		# task 4.1
 		training_model = PythonOperator(
 			task_id='training_model',
 			python_callable=train_model
 			)
 
-		# task 3.2
+		# task 4.2
 		retraining_model = PythonOperator(
 			task_id='retraining_model',
 			python_callable=retrain_model
 			)
 
-	# task 4
+	# task 5
 	choosing_best = PythonOperator(
 		task_id='choosing_model',
 		python_callable=choose_best
 		)
 
 
-	# task 5
+	# task 6
 	serving_model = PythonOperator(
 		task_id='serving_model',
 		python_callable=serve_model
@@ -61,4 +67,4 @@ with DAG(
 
 
 
-	preprocessing_data >> storing_data >> training_model >> choosing_best >> serving_model
+	preparing_environment >> preprocessing_data >> storing_data >> training_model >> choosing_best >> serving_model

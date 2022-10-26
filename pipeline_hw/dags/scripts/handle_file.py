@@ -1,3 +1,6 @@
+import findspark
+findspark.init()
+
 import os
 from pyspark.sql import SparkSession
 

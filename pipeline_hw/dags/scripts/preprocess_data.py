@@ -1,3 +1,6 @@
+import findspark
+findspark.init()
+
 from pyspark.sql import SparkSession
 
 from sklearn.preprocessing import StandardScaler
@@ -14,17 +17,17 @@ def preprocess_data():
 
 	if validate_target_variable(df, 'train', target_variable='Cover_Type'):
 
-	    soil_cols = [name for name in df.columns if name.startswith("Soil")]
-	    wilderness_cols = [name for name in df.columns if name.startswith("Wild")]
-	    hillshade_cols = [name for name in df.columns if name.startswith("Hill")]
-	    restof_columns = [
-	        "Elevation",
-	        "Aspect",
-	        "Slope",
-	        "Horizontal_Distance_To_Hydrology",
-	        "Vertical_Distance_To_Hydrology",
-	        "Horizontal_Distance_To_Roadways",
-	    ]
+		soil_cols = [name for name in df.columns if name.startswith("Soil")]
+		wilderness_cols = [name for name in df.columns if name.startswith("Wild")]
+		hillshade_cols = [name for name in df.columns if name.startswith("Hill")]
+		restof_columns = [
+			"Elevation",
+			"Aspect",
+			"Slope",
+			"Horizontal_Distance_To_Hydrology",
+			"Vertical_Distance_To_Hydrology",
+			"Horizontal_Distance_To_Roadways",
+		]
 
 		to_drop = soil_cols + wilderness_cols + hillshade_cols
 
