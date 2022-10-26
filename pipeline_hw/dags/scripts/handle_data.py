@@ -14,7 +14,6 @@ batch_table = config.params['data_batch_table']
 
 spark = SparkSession.builder.appName('Storing and/or Loading Data').getOrCreate()
 
-
 def store_data():
 	df = read_file('data_batch_transformed')
 	engine = create_engine(db_engine)
