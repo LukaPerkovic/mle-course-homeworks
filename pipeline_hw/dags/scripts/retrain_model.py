@@ -26,6 +26,7 @@ def train_model():
 		min_samples_leaf=1
 		)
 
+
 	scores = cross_val_score(model, df.drop('Cover_Type', axis=1), df.Cover_Type, scoring='accuracy', cv=cv, n_jobs=1)
 	percentage = str(int(round(scores,2) * 100))
 
@@ -34,5 +35,6 @@ def train_model():
 	filename = f'{model}_{trained}_{actual_date}_{percentage}'
 
 	save_model(filename)
+
 
 	return True
