@@ -26,13 +26,13 @@ def preprocess_data():
 	        "Horizontal_Distance_To_Roadways",
 	    ]
 
-	to_drop = soil_cols + wilderness_cols + hillshade_cols
+		to_drop = soil_cols + wilderness_cols + hillshade_cols
 
-	df.drop(*to_drop)
+		df.drop(*to_drop)
 
-	scaler = StandardScaler()
+		scaler = StandardScaler()
 
-	save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
+		save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
 
 	else:
 		raise Exception('Target column missing from dataframe.')
