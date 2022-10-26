@@ -3,7 +3,6 @@ import os
 
 import shutil
 
-
 MODEL_DIR = '/models/'
 BEST_MODEL_DIR = '/best_model/'
 
