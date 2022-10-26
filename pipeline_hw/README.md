@@ -22,3 +22,6 @@ TASK 3 - Model Serving pipeline:
 - Use the data from Task 1
 - Use the model from Task 2
 - Produce results
+
+
+sudo chmod u=rwx,g=rwx,o=rwx logs
