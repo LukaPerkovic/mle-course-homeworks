@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 from sqlalchemy import create_engine
 
 from scripts.handle_file import load_file
@@ -10,7 +9,6 @@ import utils.ml_pipeline_config as config
 db_engine = config.params['db_engine']
 db_schema = config.params['db_schema']
 batch_table = config.params['data_batch_table']
-
 
 spark = SparkSession.builder.appName('Storing and/or Loading Data').getOrCreate()
 
