@@ -6,13 +6,11 @@ from scripts.handle_file import read_file, save_file
 from scripts.validate_data import validate_target_variable
 
 
-
-
 spark = SparkSession.builder.appName('Preprocess data').getOrCreate()
 
 
 def preprocess_data():
-	df = read_file('data_batch')
+	df = read_file('data_batch.csv')
 
 	if validate_target_variable(df, 'train', target_variable='Cover_Type'):
 
@@ -34,7 +32,9 @@ def preprocess_data():
 
 	scaler = StandardScaler()
 
-	save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed')
+	save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
 
 	else:
 		raise Exception('Target column missing from dataframe.')
+
+	return True
