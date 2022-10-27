@@ -1,7 +1,7 @@
-import findspark
-findspark.init()
+# import findspark
+# findspark.init()
 
-from pyspark.sql import SparkSession
+# from pyspark.sql import SparkSession
 
 from sklearn.preprocessing import StandardScaler
 
@@ -9,7 +9,7 @@ from scripts.handle_file import read_file, save_file
 from scripts.validate_data import validate_target_variable
 
 
-spark = SparkSession.builder.appName('Preprocess data').getOrCreate()
+# spark = SparkSession.builder.appName('Preprocess data').getOrCreate()
 
 
 def preprocess_data():
@@ -31,11 +31,14 @@ def preprocess_data():
 
 		to_drop = soil_cols + wilderness_cols + hillshade_cols
 
-		df.drop(*to_drop)
+		# df = df.drop(*to_drop)
+
+		df = df.drop(*to_drop, axis=1)
 
 		scaler = StandardScaler()
 
-		save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
+		# save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
+		save_file(scaler.fit_transform(df), 'data_batch_transformed.csv')
 
 	else:
 		raise Exception('Target column missing from dataframe.')

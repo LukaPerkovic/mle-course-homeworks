@@ -5,9 +5,8 @@ USER root
 # Spark dependencies
 # Default values can be overridden at build time
 # (ARGS are in lower case to distinguish them from ENV)
-ARG spark_version="3.1.2"
+ARG spark_version="3.2.2"
 ARG hadoop_version="3.2"
-ARG spark_checksum="2385CB772F21B014CE2ABD6B8F5E815721580D6E8BC42A26D70BBCDDA8D303D886A6F12B36D40F6971B5547B70FAE62B5A96146F0421CB93D4E51491308EF5D5"
 ARG openjdk_version="11"
 
 ENV APACHE_SPARK_VERSION="${spark_version}" \
@@ -23,7 +22,6 @@ RUN apt-get update --yes && \
 # Spark installation
 WORKDIR /tmp
 RUN wget -q "https://archive.apache.org/dist/spark/spark-${APACHE_SPARK_VERSION}/spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz" && \
-    echo "${spark_checksum} *spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz" | sha512sum -c - && \
     tar xzf "spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz" -C /usr/local --owner root --group root --no-same-owner && \
     rm "spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz"
 

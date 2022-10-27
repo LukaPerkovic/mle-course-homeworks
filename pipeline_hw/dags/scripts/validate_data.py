@@ -1,7 +1,7 @@
-import pyspark
-from pyspark.sql
+# import pyspark
+# from pyspark.sql
 
-spark = SparkSession.builder.appName('Dataset Validation').getOrCreate()
+# spark = SparkSession.builder.appName('Dataset Validation').getOrCreate()
 
 def validate_target_variable(df, type, target_variable:str):
 	if type == 'train' and target_variable in df.columns:

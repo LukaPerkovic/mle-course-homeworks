@@ -2454,3 +2454,220 @@ SyntaxError: invalid syntax
 [2022-10-26T20:39:11.054+0000] {processor.py:156} INFO - Started process (PID=684) to work on /opt/airflow/dags/ml_pipeline.py
 [2022-10-26T20:39:11.054+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
 [2022-10-26T20:39:11.055+0000] {logging_mixin.py:117} INFO - [2022-10-26T20:39:11.055+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:09:24.894+0000] {processor.py:156} INFO - Started process (PID=161) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:09:24.946+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-26T22:09:24.947+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:24.947+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:09:55.038+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:55.037+0000] {timeout.py:68} ERROR - Process timed out, PID: 161
+[2022-10-26T22:09:55.266+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:55.100+0000] {clientserver.py:538} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 161
+[2022-10-26T22:09:55.267+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:55.267+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-26T22:09:55.271+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:55.267+0000] {java_gateway.py:1056} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 161
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 540, in send_command
+    "Error while sending or receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2022-10-26T22:09:55.271+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:55.271+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-26T22:09:55.513+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:09:55.425+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+  File "/usr/local/spark/python/pyspark/sql/session.py", line 233, in getOrCreate
+    session._jsparkSession.sessionState().conf().setConfString(key, value)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    answer, self.gateway_client, self.target_id, self.name)
+  File "/usr/local/spark/python/pyspark/sql/utils.py", line 111, in deco
+    return f(*a, **kw)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/protocol.py", line 336, in get_return_value
+    format(target_id, ".", name))
+py4j.protocol.Py4JError: An error occurred while calling o24.sessionState
+[2022-10-26T22:09:55.514+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:09:56.027+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 31.136 seconds
+[2022-10-26T22:10:26.771+0000] {processor.py:156} INFO - Started process (PID=250) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:10:26.772+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-26T22:10:26.773+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:26.773+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:10:56.783+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:56.783+0000] {timeout.py:68} ERROR - Process timed out, PID: 250
+[2022-10-26T22:10:56.838+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:56.786+0000] {clientserver.py:538} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 250
+[2022-10-26T22:10:56.861+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:56.855+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-26T22:10:56.958+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:56.884+0000] {java_gateway.py:1056} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 250
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 540, in send_command
+    "Error while sending or receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2022-10-26T22:10:56.986+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:56.974+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-26T22:10:57.081+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:10:57.009+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+  File "/usr/local/spark/python/pyspark/sql/session.py", line 228, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/usr/local/spark/python/pyspark/context.py", line 392, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/usr/local/spark/python/pyspark/context.py", line 147, in __init__
+    conf, jsc, profiler_cls)
+  File "/usr/local/spark/python/pyspark/context.py", line 209, in _do_init
+    self._jsc = jsc or self._initialize_context(self._conf._jconf)
+  File "/usr/local/spark/python/pyspark/context.py", line 329, in _initialize_context
+    return self._jvm.JavaSparkContext(jconf)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1586, in __call__
+    answer, self._gateway_client, None, self._fqn)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/protocol.py", line 336, in get_return_value
+    format(target_id, ".", name))
+py4j.protocol.Py4JError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext
+[2022-10-26T22:10:57.140+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:10:57.581+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 30.819 seconds
+[2022-10-26T22:11:28.222+0000] {processor.py:156} INFO - Started process (PID=326) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:11:28.225+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-26T22:11:28.229+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:28.229+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:11:58.263+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:58.262+0000] {timeout.py:68} ERROR - Process timed out, PID: 326
+[2022-10-26T22:11:58.266+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:58.264+0000] {clientserver.py:538} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 326
+[2022-10-26T22:11:58.266+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:58.266+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-26T22:11:58.267+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:58.266+0000] {java_gateway.py:1056} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 326
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 540, in send_command
+    "Error while sending or receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2022-10-26T22:11:58.268+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:58.268+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-26T22:11:58.269+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:11:58.268+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+  File "/usr/local/spark/python/pyspark/sql/session.py", line 228, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/usr/local/spark/python/pyspark/context.py", line 392, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/usr/local/spark/python/pyspark/context.py", line 147, in __init__
+    conf, jsc, profiler_cls)
+  File "/usr/local/spark/python/pyspark/context.py", line 209, in _do_init
+    self._jsc = jsc or self._initialize_context(self._conf._jconf)
+  File "/usr/local/spark/python/pyspark/context.py", line 329, in _initialize_context
+    return self._jvm.JavaSparkContext(jconf)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1586, in __call__
+    answer, self._gateway_client, None, self._fqn)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/protocol.py", line 336, in get_return_value
+    format(target_id, ".", name))
+py4j.protocol.Py4JError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext
+[2022-10-26T22:11:58.269+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:11:59.339+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 31.129 seconds
+[2022-10-26T22:12:30.052+0000] {processor.py:156} INFO - Started process (PID=368) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:12:30.054+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-26T22:12:30.055+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:12:30.055+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:12:50.989+0000] {logging_mixin.py:117} INFO - [2022-10-26T22:12:50.988+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-26T22:12:50.989+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-26T22:12:51.109+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 21.074 seconds

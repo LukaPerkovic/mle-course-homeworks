@@ -1,0 +1,1105 @@
+[2022-10-27T09:20:26.642+0000] {processor.py:156} INFO - Started process (PID=162) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:20:26.811+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:20:26.813+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:20:26.813+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:20:56.852+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:20:56.852+0000] {timeout.py:68} ERROR - Process timed out, PID: 162
+[2022-10-27T09:20:57.113+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:20:56.860+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+  File "/usr/local/spark/python/pyspark/sql/session.py", line 228, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/usr/local/spark/python/pyspark/context.py", line 392, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/usr/local/spark/python/pyspark/context.py", line 144, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/usr/local/spark/python/pyspark/context.py", line 339, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+  File "/usr/local/spark/python/pyspark/java_gateway.py", line 105, in launch_gateway
+    time.sleep(0.1)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 162
+[2022-10-27T09:20:57.183+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:20:57.536+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 30.901 seconds
+[2022-10-27T09:21:27.928+0000] {processor.py:156} INFO - Started process (PID=198) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:21:27.949+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:21:27.950+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:27.950+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:21:57.974+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:57.971+0000] {timeout.py:68} ERROR - Process timed out, PID: 198
+[2022-10-27T09:21:57.982+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:57.974+0000] {clientserver.py:538} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 198
+[2022-10-27T09:21:57.982+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:57.982+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-27T09:21:57.983+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:57.982+0000] {java_gateway.py:1056} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 198
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 540, in send_command
+    "Error while sending or receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2022-10-27T09:21:57.983+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:57.983+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-27T09:21:57.984+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:21:57.984+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+  File "/usr/local/spark/python/pyspark/sql/session.py", line 228, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/usr/local/spark/python/pyspark/context.py", line 392, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/usr/local/spark/python/pyspark/context.py", line 147, in __init__
+    conf, jsc, profiler_cls)
+  File "/usr/local/spark/python/pyspark/context.py", line 209, in _do_init
+    self._jsc = jsc or self._initialize_context(self._conf._jconf)
+  File "/usr/local/spark/python/pyspark/context.py", line 329, in _initialize_context
+    return self._jvm.JavaSparkContext(jconf)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1586, in __call__
+    answer, self._gateway_client, None, self._fqn)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/protocol.py", line 336, in get_return_value
+    format(target_id, ".", name))
+py4j.protocol.Py4JError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext
+[2022-10-27T09:21:57.985+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:21:58.235+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 30.310 seconds
+[2022-10-27T09:22:28.559+0000] {processor.py:156} INFO - Started process (PID=278) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:22:28.560+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:22:28.567+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:22:28.567+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:22:37.283+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:22:37.282+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:22:37.284+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:22:37.325+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 8.779 seconds
+[2022-10-27T09:23:07.485+0000] {processor.py:156} INFO - Started process (PID=367) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:23:07.487+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:23:07.487+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:23:07.487+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:23:19.052+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:23:19.051+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:23:19.052+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:23:19.075+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 11.594 seconds
+[2022-10-27T09:23:49.368+0000] {processor.py:156} INFO - Started process (PID=456) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:23:49.378+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:23:49.378+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:23:49.378+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:24:06.255+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:24:06.254+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:24:06.258+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:24:06.279+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 16.916 seconds
+[2022-10-27T09:24:36.585+0000] {processor.py:156} INFO - Started process (PID=545) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:24:36.586+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:24:36.592+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:24:36.591+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:25:06.632+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:06.632+0000] {timeout.py:68} ERROR - Process timed out, PID: 545
+[2022-10-27T09:25:06.635+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:06.634+0000] {clientserver.py:538} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 545
+[2022-10-27T09:25:06.636+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:06.636+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-27T09:25:06.637+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:06.636+0000] {java_gateway.py:1056} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/ml_pipeline.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.4.1/best-practices.html#reducing-dag-complexity, PID: 545
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/clientserver.py", line 540, in send_command
+    "Error while sending or receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2022-10-27T09:25:06.637+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:06.637+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2022-10-27T09:25:06.638+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:06.638+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+  File "/usr/local/spark/python/pyspark/sql/session.py", line 228, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/usr/local/spark/python/pyspark/context.py", line 392, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/usr/local/spark/python/pyspark/context.py", line 147, in __init__
+    conf, jsc, profiler_cls)
+  File "/usr/local/spark/python/pyspark/context.py", line 209, in _do_init
+    self._jsc = jsc or self._initialize_context(self._conf._jconf)
+  File "/usr/local/spark/python/pyspark/context.py", line 329, in _initialize_context
+    return self._jvm.JavaSparkContext(jconf)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1586, in __call__
+    answer, self._gateway_client, None, self._fqn)
+  File "/usr/local/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/protocol.py", line 336, in get_return_value
+    format(target_id, ".", name))
+py4j.protocol.Py4JError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext
+[2022-10-27T09:25:06.640+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:25:06.751+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 30.187 seconds
+[2022-10-27T09:25:37.086+0000] {processor.py:156} INFO - Started process (PID=587) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:25:37.088+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:25:37.089+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:37.089+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:25:47.508+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:25:47.507+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:25:47.508+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:25:47.540+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 10.459 seconds
+[2022-10-27T09:26:17.769+0000] {processor.py:156} INFO - Started process (PID=676) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:26:17.770+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:26:17.771+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:26:17.771+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:26:25.403+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:26:25.402+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:26:25.404+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:26:25.446+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 7.682 seconds
+[2022-10-27T09:26:55.575+0000] {processor.py:156} INFO - Started process (PID=765) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:26:55.577+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:26:55.577+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:26:55.577+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:27:06.304+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:27:06.303+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:27:06.304+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:27:06.323+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 10.752 seconds
+[2022-10-27T09:27:36.518+0000] {processor.py:156} INFO - Started process (PID=854) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:27:36.519+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:27:36.519+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:27:36.519+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:27:46.358+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:27:46.358+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:27:46.358+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:27:46.387+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 9.880 seconds
+[2022-10-27T09:28:16.578+0000] {processor.py:156} INFO - Started process (PID=943) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:28:16.581+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:28:16.582+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:28:16.581+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:28:24.278+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:28:24.277+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:28:24.279+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:28:24.347+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 7.772 seconds
+[2022-10-27T09:28:54.562+0000] {processor.py:156} INFO - Started process (PID=1032) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:28:54.563+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:28:54.564+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:28:54.564+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:29:04.084+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:29:04.084+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:29:04.085+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:29:04.107+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 9.549 seconds
+[2022-10-27T09:29:34.277+0000] {processor.py:156} INFO - Started process (PID=1121) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:29:34.278+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:29:34.279+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:29:34.279+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:29:43.240+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:29:43.239+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:29:43.241+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:29:43.272+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 8.999 seconds
+[2022-10-27T09:30:13.482+0000] {processor.py:156} INFO - Started process (PID=1210) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:30:13.490+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:30:13.491+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:30:13.490+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:30:21.934+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:30:21.933+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:30:21.934+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:30:21.983+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 8.504 seconds
+[2022-10-27T09:30:52.180+0000] {processor.py:156} INFO - Started process (PID=1299) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:30:52.182+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:30:52.182+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:30:52.182+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:31:01.806+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:31:01.805+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:31:01.806+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:31:01.837+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 9.661 seconds
+[2022-10-27T09:31:32.028+0000] {processor.py:156} INFO - Started process (PID=1388) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:31:32.029+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:31:32.029+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:31:32.029+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:31:41.201+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:31:41.200+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:31:41.202+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:31:41.223+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 9.198 seconds
+[2022-10-27T09:32:11.341+0000] {processor.py:156} INFO - Started process (PID=1477) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:32:11.350+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:32:11.350+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:32:11.350+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:32:19.339+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:32:19.338+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:32:19.339+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:32:19.376+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 8.038 seconds
+[2022-10-27T09:32:49.616+0000] {processor.py:156} INFO - Started process (PID=1566) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:32:49.619+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:32:49.620+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:32:49.619+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:32:56.938+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:32:56.938+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:32:56.939+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:32:56.966+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 7.355 seconds
+[2022-10-27T09:33:27.222+0000] {processor.py:156} INFO - Started process (PID=1655) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:33:27.226+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:33:27.227+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:33:27.227+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:33:38.485+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:33:38.485+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:33:38.486+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:33:38.667+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 11.450 seconds
+[2022-10-27T09:34:08.910+0000] {processor.py:156} INFO - Started process (PID=1744) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:34:08.912+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:34:08.913+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:34:08.913+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:34:19.930+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:34:19.929+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:34:19.930+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:34:19.989+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 11.083 seconds
+[2022-10-27T09:34:50.227+0000] {processor.py:156} INFO - Started process (PID=1833) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:34:50.230+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:34:50.231+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:34:50.230+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:34:57.596+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:34:57.594+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:34:57.597+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:34:57.634+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 7.411 seconds
+[2022-10-27T09:35:27.785+0000] {processor.py:156} INFO - Started process (PID=1922) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:35:27.788+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:35:27.789+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:35:27.789+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:35:36.637+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:35:36.636+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:35:36.637+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:35:36.661+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 8.880 seconds
+[2022-10-27T09:36:06.875+0000] {processor.py:156} INFO - Started process (PID=2011) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:36:06.878+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:36:06.879+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:36:06.879+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:36:15.758+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:36:15.757+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:36:15.758+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:36:15.780+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 8.908 seconds
+[2022-10-27T09:36:45.949+0000] {processor.py:156} INFO - Started process (PID=2100) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:36:45.962+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:36:45.963+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:36:45.963+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:36:53.454+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:36:53.453+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:36:53.454+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:36:53.475+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 7.529 seconds
+[2022-10-27T09:37:23.699+0000] {processor.py:156} INFO - Started process (PID=2189) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:37:23.701+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:37:23.701+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:37:23.701+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:37:35.336+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:37:35.336+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:37:35.337+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:37:35.526+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 11.830 seconds
+[2022-10-27T09:38:05.806+0000] {processor.py:156} INFO - Started process (PID=2278) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:38:05.807+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:38:05.808+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:38:05.808+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:38:16.781+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:38:16.780+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:38:16.783+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:38:16.838+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 11.038 seconds
+[2022-10-27T09:38:47.005+0000] {processor.py:156} INFO - Started process (PID=2367) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:38:47.018+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:38:47.019+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:38:47.019+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:38:48.448+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:38:48.447+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+NameError: name 'SparkSession' is not defined
+[2022-10-27T09:38:48.448+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:38:48.479+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 1.477 seconds
+[2022-10-27T09:39:18.708+0000] {processor.py:156} INFO - Started process (PID=2372) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:39:18.710+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:39:18.711+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:39:18.711+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:39:19.391+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:39:19.390+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+NameError: name 'SparkSession' is not defined
+[2022-10-27T09:39:19.393+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:39:19.411+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.706 seconds
+[2022-10-27T09:39:49.666+0000] {processor.py:156} INFO - Started process (PID=2377) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:39:49.674+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:39:49.676+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:39:49.676+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:39:50.198+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:39:50.197+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 8, in <module>
+    from scripts.handle_file import read_file, save_file
+  File "/opt/airflow/dags/scripts/handle_file.py", line 10, in <module>
+    spark = SparkSession.builder.appName('Handling CSV files').getOrCreate()
+NameError: name 'SparkSession' is not defined
+[2022-10-27T09:39:50.198+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:39:50.217+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.555 seconds
+[2022-10-27T09:40:20.412+0000] {processor.py:156} INFO - Started process (PID=2382) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:40:20.414+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:40:20.414+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:40:20.414+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:40:21.410+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:40:21.409+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:40:21.411+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:40:21.435+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 1.026 seconds
+[2022-10-27T09:40:51.632+0000] {processor.py:156} INFO - Started process (PID=2387) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:40:51.648+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:40:51.649+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:40:51.649+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:40:52.135+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:40:52.134+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:40:52.135+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:40:52.154+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.527 seconds
+[2022-10-27T09:41:22.348+0000] {processor.py:156} INFO - Started process (PID=2392) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:41:22.349+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:41:22.349+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:41:22.349+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:41:22.831+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:41:22.831+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:41:22.832+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:41:22.854+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.511 seconds
+[2022-10-27T09:41:53.057+0000] {processor.py:156} INFO - Started process (PID=2397) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:41:53.059+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:41:53.060+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:41:53.060+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:41:53.532+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:41:53.531+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:41:53.533+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:41:53.551+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.497 seconds
+[2022-10-27T09:42:23.770+0000] {processor.py:156} INFO - Started process (PID=2402) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:42:23.771+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:42:23.772+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:42:23.772+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:42:24.177+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:42:24.176+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:42:24.177+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:42:24.200+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.434 seconds
+[2022-10-27T09:42:54.488+0000] {processor.py:156} INFO - Started process (PID=2407) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:42:54.490+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:42:54.490+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:42:54.490+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:42:54.736+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:42:54.735+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 41
+    else:
+       ^
+SyntaxError: invalid syntax
+[2022-10-27T09:42:54.766+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:42:54.802+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.332 seconds
+[2022-10-27T09:43:25.006+0000] {processor.py:156} INFO - Started process (PID=2412) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:43:25.007+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:43:25.008+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:43:25.007+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:43:25.387+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:43:25.386+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:43:25.387+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:43:25.410+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.407 seconds
+[2022-10-27T09:43:55.611+0000] {processor.py:156} INFO - Started process (PID=2417) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:43:55.613+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:43:55.613+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:43:55.613+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:43:56.159+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:43:56.158+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:43:56.159+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:43:56.184+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.579 seconds
+[2022-10-27T09:44:26.405+0000] {processor.py:156} INFO - Started process (PID=2422) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:44:26.424+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:44:26.425+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:44:26.425+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:44:27.151+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:44:27.141+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:44:27.152+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:44:27.177+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.775 seconds
+[2022-10-27T09:44:57.371+0000] {processor.py:156} INFO - Started process (PID=2427) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:44:57.375+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:44:57.376+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:44:57.376+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:44:57.757+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:44:57.756+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:44:57.757+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:44:57.775+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.408 seconds
+[2022-10-27T09:45:27.858+0000] {processor.py:156} INFO - Started process (PID=2432) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:45:27.859+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:45:27.860+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:45:27.860+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:45:28.459+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:45:28.458+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:45:28.463+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:45:28.507+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.653 seconds
+[2022-10-27T09:45:58.725+0000] {processor.py:156} INFO - Started process (PID=2437) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:45:58.727+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:45:58.728+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:45:58.728+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:45:59.236+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:45:59.235+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:45:59.237+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:45:59.263+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.541 seconds
+[2022-10-27T09:46:29.388+0000] {processor.py:156} INFO - Started process (PID=2442) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:46:29.389+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:46:29.390+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:46:29.390+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:46:29.766+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:46:29.765+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:46:29.767+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:46:29.785+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.401 seconds
+[2022-10-27T09:46:59.959+0000] {processor.py:156} INFO - Started process (PID=2447) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:46:59.962+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:46:59.962+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:46:59.962+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:47:00.334+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:47:00.333+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:47:00.334+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:47:00.373+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.419 seconds
+[2022-10-27T09:47:30.571+0000] {processor.py:156} INFO - Started process (PID=2452) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:47:30.572+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:47:30.573+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:47:30.573+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:47:30.976+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:47:30.975+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:47:30.976+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:47:30.996+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.430 seconds
+[2022-10-27T09:48:01.160+0000] {processor.py:156} INFO - Started process (PID=2457) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:48:01.162+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:48:01.163+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:48:01.162+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:48:01.548+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:48:01.547+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:48:01.549+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:48:01.569+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.414 seconds
+[2022-10-27T09:48:31.745+0000] {processor.py:156} INFO - Started process (PID=2462) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:48:31.775+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:48:31.775+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:48:31.775+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:48:32.246+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:48:32.246+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:48:32.247+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:48:32.266+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.524 seconds
+[2022-10-27T09:49:02.477+0000] {processor.py:156} INFO - Started process (PID=2467) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:49:02.491+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:49:02.492+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:49:02.492+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:49:03.389+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:49:03.388+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:49:03.389+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:49:03.419+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.945 seconds
+[2022-10-27T09:49:33.651+0000] {processor.py:156} INFO - Started process (PID=2472) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:49:33.652+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:49:33.653+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:49:33.653+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:49:34.024+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:49:34.023+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:49:34.024+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:49:34.053+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.408 seconds
+[2022-10-27T09:50:04.316+0000] {processor.py:156} INFO - Started process (PID=2477) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:50:04.317+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:50:04.318+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:50:04.318+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:50:04.710+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:50:04.708+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:50:04.710+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:50:04.730+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.419 seconds
+[2022-10-27T09:50:34.983+0000] {processor.py:156} INFO - Started process (PID=2482) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:50:34.996+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:50:34.996+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:50:34.996+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:50:35.848+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:50:35.847+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:50:35.860+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:50:35.889+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.910 seconds
+[2022-10-27T09:51:06.154+0000] {processor.py:156} INFO - Started process (PID=2487) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:51:06.158+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:51:06.159+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:51:06.158+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:51:06.601+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:51:06.601+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 11, in <module>
+    from scripts.preprocess_data import preprocess_data
+  File "/opt/airflow/dags/scripts/preprocess_data.py", line 9, in <module>
+    from scripts.validate_data import validate_target_variable
+  File "/opt/airflow/dags/scripts/validate_data.py", line 2
+    from pyspark.sql
+                   ^
+SyntaxError: invalid syntax
+[2022-10-27T09:51:06.602+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:51:06.630+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.485 seconds
+[2022-10-27T09:51:36.890+0000] {processor.py:156} INFO - Started process (PID=2492) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:51:36.891+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:51:36.891+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:51:36.891+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:51:37.820+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:51:37.819+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 12, in <module>
+    from scripts.store_data import store_data
+ModuleNotFoundError: No module named 'scripts.store_data'
+[2022-10-27T09:51:37.820+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:51:37.840+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.966 seconds
+[2022-10-27T09:52:08.060+0000] {processor.py:156} INFO - Started process (PID=2497) to work on /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:52:08.062+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ml_pipeline.py for tasks to queue
+[2022-10-27T09:52:08.063+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:52:08.062+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:52:08.543+0000] {logging_mixin.py:117} INFO - [2022-10-27T09:52:08.542+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/ml_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/ml_pipeline.py", line 12, in <module>
+    from scripts.store_data import store_data
+ModuleNotFoundError: No module named 'scripts.store_data'
+[2022-10-27T09:52:08.543+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/ml_pipeline.py
+[2022-10-27T09:52:08.564+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ml_pipeline.py took 0.507 seconds
