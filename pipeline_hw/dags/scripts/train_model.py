@@ -10,7 +10,7 @@ from scripts.handle_file import read_file
 from scripts.handle_model import save_model
 
 
-DATA_DIR '/data/'
+DATA_DIR = '/opt/airflow/data/'
 
 
 def train_model():

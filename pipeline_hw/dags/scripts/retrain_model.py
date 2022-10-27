@@ -10,10 +10,10 @@ from scripts.handle_data import load_data
 from scripts.handle_model import save_model
 
 
-DATA_DIR '/data/'
+DATA_DIR = '/opt/airflow/data/'
 
 
-def train_model():
+def retrain_model():
 	df = load_data()
 
 	cv = KFold(n_splits=10, random_state=1, shuffle=True)

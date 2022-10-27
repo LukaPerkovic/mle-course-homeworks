@@ -1,6 +1,6 @@
 # import findspark
 # findspark.init()
-
+import pandas as pd
 # from pyspark.sql import SparkSession
 
 from sklearn.preprocessing import StandardScaler
@@ -33,12 +33,12 @@ def preprocess_data():
 
 		# df = df.drop(*to_drop)
 
-		df = df.drop(*to_drop, axis=1)
+		df = df.drop(to_drop, axis=1)
 
 		scaler = StandardScaler()
 
 		# save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
-		save_file(scaler.fit_transform(df), 'data_batch_transformed.csv')
+		save_file(pd.DataFrame(data=scaler.fit_transform(df), columns=df.columns), 'data_batch_transformed.csv')
 
 	else:
 		raise Exception('Target column missing from dataframe.')

@@ -4,7 +4,7 @@ from scripts.validate_data import validate_target_variable
 from scripts.handle_data import load_data
 from scripts.handle_model import load_model
 
-BEST_MODEL_DIR = '/best_model/'
+BEST_MODEL_DIR = '/opt/airflow/best_model/'
 
 
 def serve_model():

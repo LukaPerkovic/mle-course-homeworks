@@ -4,7 +4,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-from scripts.handle_file import load_file
+from scripts.handle_file import read_file
 import utils.ml_pipeline_config as config
 
 # from pyspark.sql import SparkSession
@@ -30,5 +30,6 @@ def store_data():
 
 def load_data():
 	GET_ALL_SQL = f'SELECT * FROM {db_schema}.{batch_table};'
+	engine = create_engine(db_engine)
 	df = pd.read_sql(GET_ALL_SQL, engine)
 	return df

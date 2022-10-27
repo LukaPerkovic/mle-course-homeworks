@@ -9,8 +9,18 @@ from datetime import datetime
 
 
 from scripts.preprocess_data import preprocess_data
-from scripts.store_data import store_data
+from scripts.handle_data import store_data
+from scripts.train_model import train_model
+from scripts.retrain_model import retrain_model
+from scripts.choose_best import choose_best
+from scripts.serve_model import serve_model
 
+
+default_args = {
+	'owner': 'Luka Perkovic',
+	'email_on_failure': False,
+	'start_date': datetime.today()
+}
 
 with DAG(
 	'ml_pipeline',
@@ -18,12 +28,6 @@ with DAG(
 	schedule_interval=None,
 	default_args=default_args,
 	catchup=False) as dag:
-
-	#  task 1
-	preparing_environment = BashOperator(
-		task_id='preparing_environment',
-		bash_command="bash/prep_env.sh"
-		)
 
 	# task 2
 	preprocessing_data = PythonOperator(
@@ -67,4 +71,4 @@ with DAG(
 
 
 
-	preparing_environment >> preprocessing_data >> storing_data >> training_model >> choosing_best >> serving_model
+	preprocessing_data  >> storing_data >> training_model >> choosing_best >> serving_model

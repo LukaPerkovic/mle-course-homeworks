@@ -1,0 +1,18 @@
+[2022-10-27T14:33:00.155+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: ml_pipeline.processing_data manual__2022-10-27T14:32:53.208790+00:00 [queued]>
+[2022-10-27T14:33:00.205+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: ml_pipeline.processing_data manual__2022-10-27T14:32:53.208790+00:00 [queued]>
+[2022-10-27T14:33:00.205+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-27T14:33:00.205+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-10-27T14:33:00.206+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-27T14:33:00.277+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): processing_data> on 2022-10-27 14:32:53.208790+00:00
+[2022-10-27T14:33:00.282+0000] {standard_task_runner.py:54} INFO - Started process 308 to run task
+[2022-10-27T14:33:00.323+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'processing_data', 'manual__2022-10-27T14:32:53.208790+00:00', '--job-id', '62', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmp4s1mmyne']
+[2022-10-27T14:33:00.338+0000] {standard_task_runner.py:83} INFO - Job 62: Subtask processing_data
+[2022-10-27T14:33:00.339+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/ml_pipeline.py
+[2022-10-27T14:33:01.771+0000] {local_task_job.py:87} ERROR - Received SIGTERM. Terminating subprocesses
+[2022-10-27T14:33:01.909+0000] {process_utils.py:133} INFO - Sending Signals.SIGTERM to group 308. PIDs of all processes in the group: [308]
+[2022-10-27T14:33:01.909+0000] {process_utils.py:84} INFO - Sending the signal Signals.SIGTERM to group 308
+[2022-10-27T14:33:03.657+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=308, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='14:32:59') (308) terminated with exit code Negsignal.SIGTERM
+[2022-10-27T14:33:03.663+0000] {local_task_job.py:164} INFO - Task exited with return code 143
+[2022-10-27T14:33:06.686+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
