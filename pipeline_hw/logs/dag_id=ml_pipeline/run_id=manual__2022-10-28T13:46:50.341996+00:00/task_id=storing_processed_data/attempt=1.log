@@ -1,0 +1,51 @@
+[2022-10-28T13:49:30.964+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: ml_pipeline.storing_processed_data manual__2022-10-28T13:46:50.341996+00:00 [queued]>
+[2022-10-28T13:49:31.018+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: ml_pipeline.storing_processed_data manual__2022-10-28T13:46:50.341996+00:00 [queued]>
+[2022-10-28T13:49:31.018+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-28T13:49:31.018+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-10-28T13:49:31.018+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-28T13:49:31.075+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): storing_processed_data> on 2022-10-28 13:46:50.341996+00:00
+[2022-10-28T13:49:31.080+0000] {standard_task_runner.py:54} INFO - Started process 224 to run task
+[2022-10-28T13:49:31.109+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'storing_processed_data', 'manual__2022-10-28T13:46:50.341996+00:00', '--job-id', '109', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmphm5zhcys']
+[2022-10-28T13:49:31.110+0000] {standard_task_runner.py:83} INFO - Job 109: Subtask storing_processed_data
+[2022-10-28T13:49:31.125+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/ml_pipeline.py
+[2022-10-28T13:49:34.059+0000] {task_command.py:384} INFO - Running <TaskInstance: ml_pipeline.storing_processed_data manual__2022-10-28T13:46:50.341996+00:00 [running]> on host 74b1233796b3
+[2022-10-28T13:49:34.409+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Luka Perkovic
+AIRFLOW_CTX_DAG_ID=ml_pipeline
+AIRFLOW_CTX_TASK_ID=storing_processed_data
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-28T13:46:50.341996+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-10-28T13:46:50.341996+00:00
+[2022-10-28T13:49:34.410+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/scripts/handle_data.py", line 20, in store_data
+    df = read_file('data_batch_transformed')
+  File "/opt/airflow/dags/scripts/handle_file.py", line 16, in read_file
+    df = pd.read_csv(PATH)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 586, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 482, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 811, in __init__
+    self._engine = self._make_engine(self.engine)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 1040, in _make_engine
+    return mapping[engine](self.f, **self.options)  # type: ignore[call-arg]
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 51, in __init__
+    self._open_handles(src, kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/base_parser.py", line 229, in _open_handles
+    errors=kwds.get("encoding_errors", "strict"),
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 707, in get_handle
+    newline="",
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/data_batch_transformed'
+[2022-10-28T13:49:34.497+0000] {taskinstance.py:1406} INFO - Marking task as FAILED. dag_id=ml_pipeline, task_id=storing_processed_data, execution_date=20221028T134650, start_date=20221028T134930, end_date=20221028T134934
+[2022-10-28T13:49:34.576+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 109 for task storing_processed_data ([Errno 2] No such file or directory: '/opt/airflow/data/data_batch_transformed'; 224)
+[2022-10-28T13:49:34.658+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-28T13:49:34.777+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

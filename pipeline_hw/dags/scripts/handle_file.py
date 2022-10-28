@@ -23,5 +23,6 @@ def save_file(df, file_name):
 	df.to_csv(PATH)
 
 def delete_file(file_name):
-	if os.path.exists(DATA_DIR, file_name):
-		os.remove(os.path.join(DATA_DIR,file_name))
+	PATH = os.path.join(DATA_DIR, file_name)
+	if os.path.exists(PATH):
+		os.remove(PATH)

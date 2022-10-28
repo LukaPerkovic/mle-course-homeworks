@@ -29,7 +29,7 @@ def preprocess_data():
 			"Horizontal_Distance_To_Roadways",
 		]
 
-		to_drop = soil_cols + wilderness_cols + hillshade_cols
+		to_drop = soil_cols + wilderness_cols + hillshade_cols + ['Horizontal_Distance_To_Fire_Points']
 
 		# df = df.drop(*to_drop)
 

@@ -25,3 +25,6 @@ TASK 3 - Model Serving pipeline:
 
 
 sudo chmod u=rwx,g=rwx,o=rwx logs
+  sudo chmod -R a+rw data
+  sudo chmod -R a+rw models
+  sudo chmod -R a+rw best_model

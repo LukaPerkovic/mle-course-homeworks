@@ -28,6 +28,12 @@ with DAG(
 	schedule_interval=None,
 	default_args=default_args,
 	catchup=False) as dag:
+	
+	# task 1
+	create_table = PostgresOperator(
+		task_id='creating_batch_data_table',
+		postgres_conn_id='postgres_default',
+		sql='sql/create_batch_data_table.sql')
 
 	# task 2
 	preprocessing_data = PythonOperator(
@@ -71,4 +77,4 @@ with DAG(
 
 
 
-	preprocessing_data  >> storing_data >> training_model >> choosing_best >> serving_model
+	 create table >> preprocessing_data  >> storing_data >> training_model >> choosing_best >> serving_model
