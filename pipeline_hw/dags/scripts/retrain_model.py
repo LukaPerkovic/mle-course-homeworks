@@ -1,6 +1,7 @@
 import os
-
+import numpy as np
 from datetime import datetime
+import logging
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
@@ -16,6 +17,8 @@ DATA_DIR = '/opt/airflow/data/'
 def retrain_model():
 	df = load_data()
 
+	logging.warn(f'Database dimensions: {df.shape}')
+
 	cv = KFold(n_splits=10, random_state=1, shuffle=True)
 
 
@@ -27,8 +30,11 @@ def retrain_model():
 		)
 
 
-	scores = cross_val_score(model, df.drop('Cover_Type', axis=1), df.Cover_Type, scoring='accuracy', cv=cv, n_jobs=1)
-	percentage = str(int(round(scores,2) * 100))
+	scores = cross_val_score(model, df.drop('Cover_Type', axis=1), df.Cover_Type, scoring='accuracy', cv=cv, n_jobs=1, error_score='raise')
+
+	logging.warn(f'Prediction scores: {scores}')
+
+	percentage = str(int(round(np.mean(scores), 2) * 100))
 
 	actual_date = datetime.date.today().strftime('%Y%m%d')
 	rtrained = 'rt'

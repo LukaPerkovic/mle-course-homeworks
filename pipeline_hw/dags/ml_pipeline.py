@@ -51,13 +51,13 @@ with DAG(
 	with TaskGroup('training_and_retraining_the_model') as training_model:
 
 		# task 4.1
-		training_model = PythonOperator(
+		model_training = PythonOperator(
 			task_id='training_model',
 			python_callable=train_model
 			)
 
 		# task 4.2
-		retraining_model = PythonOperator(
+		model_retraining = PythonOperator(
 			task_id='retraining_model',
 			python_callable=retrain_model
 			)
@@ -77,4 +77,4 @@ with DAG(
 
 
 
-	 create table >> preprocessing_data  >> storing_data >> training_model >> choosing_best >> serving_model
+	create_table >> preprocessing_data  >> storing_data >> training_model >> choosing_best >> serving_model
