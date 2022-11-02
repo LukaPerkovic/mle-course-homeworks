@@ -34,11 +34,21 @@ def preprocess_data():
 		# df = df.drop(*to_drop)
 
 		df = df.drop(to_drop, axis=1)
+		
+
+		X = df.drop('Cover_Type', axis=1)
+		X_col_names = X.columns
+
+		y = df.Cover_Type
 
 		scaler = StandardScaler()
 
+		df = pd.DataFrame(data=scaler.fit_transform(X), columns=X_col_names)
+
+		df['Cover_Type'] = y
+
 		# save_file(spark.createDataFrame(scaler.fit_transform(df.toPandas())), 'data_batch_transformed.csv')
-		save_file(pd.DataFrame(data=scaler.fit_transform(df), columns=df.columns), 'data_batch_transformed.csv')
+		save_file(df, 'data_batch_transformed.csv')
 
 	else:
 		raise Exception('Target column missing from dataframe.')
