@@ -14,7 +14,7 @@ LOGGER = logging.getLogger('airflow.task')
 
 def serve_model():
 
-	pick_up_pickle = glob.glob(os.path.join(MODEL_DIR, '*.pkl'))[0]
+	pick_up_pickle = glob.glob(os.path.join(BEST_MODEL_DIR, '*.pkl'))[0]
 	model = load_model(os.path.join(BEST_MODEL_DIR, pick_up_pickle))
 
 	df = load_data()
@@ -26,5 +26,5 @@ def serve_model():
 
 	result = round(sum(score) / len(score), 2)
 
-	LOGGER.info(f'Result of currently top rated model (accuracy): {results}')
+	LOGGER.info(f'Result of currently top rated model (accuracy): {result}')
 

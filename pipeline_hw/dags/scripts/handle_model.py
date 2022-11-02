@@ -1,6 +1,5 @@
 import os
 import pickle
-from scripts.handle_file import delete_file
 
 
 def save_model(model, path):
@@ -10,5 +9,5 @@ def save_model(model, path):
 		pickle.dump(model, open(path, 'wb'))
 
 def load_model(path):
-	loaded_model = pickle.load(open(path))
+	loaded_model = pickle.load(open(path, 'rb'))
 	return loaded_model
