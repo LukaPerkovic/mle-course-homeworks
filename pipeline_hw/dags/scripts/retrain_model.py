@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from datetime import datetime
+import datetime
 
 
 from scripts.handle_data import load_data
@@ -13,10 +13,10 @@ def retrain_model():
 	model, percentage = modeling(df)
 
 	actual_date = datetime.date.today().strftime('%Y%m%d')
-	rtrained = 'rt'
+	trained = 'rt'
 	filename = f'model_{trained}_{actual_date}_{percentage}'
 
-	save_model(filename)
+	save_model(model, filename)
 
 
 	return True

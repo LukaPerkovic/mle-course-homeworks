@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from datetime import datetime
+import datetime
 import logging
 
 
@@ -18,7 +18,7 @@ def train_model():
 	trained = 't'
 	filename = f'model_{trained}_{actual_date}_{percentage}'
 
-	save_model(filename)
+	save_model(model, filename)
 
 
 	return True

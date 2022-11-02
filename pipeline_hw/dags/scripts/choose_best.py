@@ -12,11 +12,12 @@ def choose_best():
 	score = 0
 
 	for file in os.listdir('.'):
-		model_score = int(file[-2:])
+		if file.startswith('model'):
+			model_score = int(file[-2:])
 
-		if model_score > score:
-			score = model_score
-			model = file	
+			if model_score > score:
+				score = model_score
+				model = file	
 
 	origin_filepath = os.path.join(MODEL_DIR, model)
 	destination_filepath = os.path.join(BEST_MODEL_DIR, model)		
