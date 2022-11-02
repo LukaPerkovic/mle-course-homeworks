@@ -1,12 +1,14 @@
 import os
 import pickle
+from scripts.handle_file import delete_file
 
-MODEL_DIR = '/opt/airflow/models/'
-BEST_MODEL_DIR = '/opt/airflow/best_model/'
 
-def save_model(model, model_name):
-	pickle.dump(model, open(os.path.join(BEST_MODEL_DIR, model_name), 'wb'))
+def save_model(model, path):
+	if os.path.exists(path):
+		pass
+	else:
+		pickle.dump(model, open(path, 'wb'))
 
-def load_model(model_name):
-	loaded_model = pickle.load(open(os.path.join(BEST_MODEL_DIR, model_name)))
+def load_model(path):
+	loaded_model = pickle.load(open(path))
 	return loaded_model
