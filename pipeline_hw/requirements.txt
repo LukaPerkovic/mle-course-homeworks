@@ -1,0 +1,5 @@
+scikit-learn
+pyspark==3.2.2
+findspark
+pandas
+

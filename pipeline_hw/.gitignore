@@ -1,0 +1,5 @@
+pipeline_python/
+logs/
+data/data_batch_transformed.csv
+models/
+best_model/
