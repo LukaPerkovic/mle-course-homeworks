@@ -3,28 +3,31 @@
 
 ### Airflow
 
+#### Description:
+One pipeline to handle complete process - From ingesting data to serving model.
 
-TASK 1 - ETL pipeline:
+Since there's no input stream of data available, we are using the same file for the whole process.
+Retraining logic has been set up, but in order to avoid making duplicate data it is currently dropping and replacing the table in database. Key logic to change if we had real input stream of batch data is changing if_exists='replace' with if_exists='append'. This way we have new stream of data, and we are keeping up with retraining the model.
 
-- Fetch batches from the source
-- Preprocess and transform the data
-- Store the data for future steps
+Pipepine steps:
 
-TASK 2 - Model Training pipeline:
+- Task 1: Creates table for processed data (used for retraining model)
+- Task 2: Preprocessing data (taking data_batch.csv file) and creating a transformed version in /data folder.
+- Task 3: Picking up transformed version and storing it in table created in Task 1
+- Task 4: Training model - Contains both training anew (from transformed .csv) and retraining (from postgres table). Both version of model are stored in /models folder
+- Task 5: Accessing what is the best model per accuracy and placing it in /best_model directory
+- Task 6: Picking up the best model and serving it via Airflow Logs for this specific task (serving_model)
 
-- Split the data in train and test sets
-- Perform k fold cross-validated training for hyper
-- Store the experimental results
-- Save the model
+#### Installation:
 
-TASK 3 - Model Serving pipeline:
+1. Clone the repository and navigate to /pipeline_hw
+2. There run the command:
+```docker build . --tag extending_airflow:latest``` .
+This step is needed in order to enable writing requirements.txt in Production environment, but as well to install JDK, Hadoop, and Spark dependencies needed for Pyspark.
+3. Run the command: ```docker compose up``` .
+This will initiate the containers and start the webserver on localhost:8080
+4. If prompted for Airflow user/pass it will be: airflow/airflow
+5. After finishing Airflow, run ```docker compose down```
 
-- Use the data from Task 1
-- Use the model from Task 2
-- Produce results
 
 
-sudo chmod u=rwx,g=rwx,o=rwx logs
-  sudo chmod -R a+rw data
-  sudo chmod -R a+rw models
-  sudo chmod -R a+rw best_model
