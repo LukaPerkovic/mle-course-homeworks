@@ -1,5 +1,6 @@
 # import findspark
 # findspark.init()
+import logging
 import pandas as pd
 # from pyspark.sql import SparkSession
 
@@ -14,7 +15,7 @@ from scripts.validate_data import validate_target_variable
 
 def preprocess_data():
 	df = read_file('data_batch.csv')
-
+	logging.warn(f'Dataset info: {df.shape}--{df.columns}')
 	if validate_target_variable(df, 'train', target_variable='Cover_Type'):
 
 		soil_cols = [name for name in df.columns if name.startswith("Soil")]
