@@ -1,1 +1,3 @@
 model_lib/
+scripts/etl.py
+scripts/train.py
