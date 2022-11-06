@@ -101,6 +101,9 @@ PARAMS = {
 			 'uruguay': 100,
 			 'uzbekistan': 101},
 	'age_list': age_ranger,
+	'sex_list': {'male': 1,
+		     'female': 2
+		    }
 }
 
 def age_ranger(age: int) -> str:
