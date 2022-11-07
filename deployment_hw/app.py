@@ -1,14 +1,9 @@
 from flask import Flask, request
 
+from scripts.transform import transform
+
 app = Flask(__name__)
 
-@app.route('/query-example')
-def query_example():
-	country = request.args.get('country')
-	sex = request.args.get('sex')
-	age = request.args.get('age')
-
-	return f'Query String query_example: Array [{country} {sex} {age}]'
 
 @app.route('/form-example', methods=['GET', 'POST'])
 def form_example():
@@ -18,9 +13,19 @@ def form_example():
 		age = request.form.get('age')
 		csv = request.files.get('data')
 		if csv:
-			return 'Got the csv'
+			batch = True
+			df = transform(csv, batch)
 		elif not any(item is None for item in [country, sex, age]):
-			return f'form Data Example: Array [{country} {sex} {age}]'
+			df = transform(csv, batch)
+
+		score = serve(df, batch)
+		if batch:
+			return_string = 'The probabilities of these people killing themselves are: {score}' 
+		else:
+			return_string = 'The probabilty of this person killing themself is: {score}' 
+
+		return return_string
+		
 		else:
 			return f"Error in POST control flow: [{country}, {sex}, {age}, {csv}]"
 	else:
