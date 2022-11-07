@@ -12,9 +12,9 @@ def form_example():
 	if request.method == 'POST':
 
 		# Single
-		country = str(request.form.get('country'))
-		sex = str(request.form.get('sex'))
-		age = int(request.form.get('age'))
+		country = request.form.get('country')
+		sex = request.form.get('sex')
+		age = request.form.get('age')
 
 		# Batch
 		csv = request.files.get('data')
@@ -22,7 +22,7 @@ def form_example():
 		if csv:
 			batch = True
 			df = transform(csv, batch)
-		elif not any(item is None for item in [country, sex, age]):
+		elif not any(item is None for item in [str(country), str(sex), int(age)]):
 			batch = False
 			df = transform([country, sex, age], batch)
 
@@ -45,4 +45,4 @@ def form_example():
 			</form>'''
 
 if __name__ == '__main__':
-	app.run(port =5000)
+	app.run(debug=True, host='0.0.0.0', port=5000)
