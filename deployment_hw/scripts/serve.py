@@ -8,5 +8,5 @@ def serve(df, batch):
 	except ValueError:
 		raise ValueError('Incorrect values supplied to the model!')
 
-	return score[0] if batch else score
+	return score if batch else score[0]
 

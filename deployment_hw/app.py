@@ -7,14 +7,14 @@ from scripts.serve import serve
 app = Flask(__name__)
 
 
-@app.route('/form-example', methods=['GET', 'POST'])
+@app.route('/predict', methods=['GET', 'POST'])
 def form_example():
 	if request.method == 'POST':
 
 		# Single
-		country = request.form.get('country')
-		sex = request.form.get('sex')
-		age = request.form.get('age')
+		country = str(request.form.get('country'))
+		sex = str(request.form.get('sex'))
+		age = int(request.form.get('age'))
 
 		# Batch
 		csv = request.files.get('data')
@@ -23,14 +23,15 @@ def form_example():
 			batch = True
 			df = transform(csv, batch)
 		elif not any(item is None for item in [country, sex, age]):
+			batch = False
 			df = transform([country, sex, age], batch)
 
 		score = serve(df, batch)
 
 		if batch:
-			return_string = 'The probabilities of these people killing themselves are: {score}' 
+			return_string = f'The probabilities of these people killing themselves are: {score}\n' 
 		else:
-			return_string = 'The probabilty of this person killing themself is: {score}' 
+			return_string = f'The probabilty of this person killing themself is: {score}\n' 
 
 		return return_string
 
