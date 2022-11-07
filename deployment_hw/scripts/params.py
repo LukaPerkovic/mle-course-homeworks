@@ -100,7 +100,6 @@ PARAMS = {
 			 'united states': 99,
 			 'uruguay': 100,
 			 'uzbekistan': 101},
-	'age_list': age_ranger,
 	'sex_list': {'male': 0,
 		     'female': 1
 		    }
