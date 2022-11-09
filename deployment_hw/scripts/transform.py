@@ -13,14 +13,13 @@ def transform(data_obj, batch=False) -> pd.DataFrame:
 		df.columns = ['country', 'sex', 'age']
 
 	 # Transformation
-
-	try:
+		
 		df['country'] = df.country.apply(lambda x:x.lower())
 		df['country'] = df.country.replace(PARAMS['country_list'])	
 		df['sex'] = df.sex.replace(PARAMS['sex_list'])
+		df['age'] = pd.to_numeric(df['age'])
 		df['age'] = df.age.apply(age_ranger)
-	except ValueError:
-		raise ValueError("Incorrect values supplied to the model!")
+
 
 
 	return df
