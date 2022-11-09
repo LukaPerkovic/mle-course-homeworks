@@ -14,11 +14,11 @@ def transform(data_obj, batch=False) -> pd.DataFrame:
 
 	 # Transformation
 		
-		df['country'] = df.country.apply(lambda x:x.lower())
-		df['country'] = df.country.replace(PARAMS['country_list'])	
-		df['sex'] = df.sex.replace(PARAMS['sex_list'])
-		df['age'] = pd.to_numeric(df['age'])
-		df['age'] = df.age.apply(age_ranger)
+	df['country'] = df.country.apply(lambda x:x.lower())
+	df['country'] = df.country.replace(PARAMS['country_list'])
+	df['sex'] = df.sex.replace(PARAMS['sex_list'])
+	df['age'] = pd.to_numeric(df['age'])
+	df['age'] = df.age.apply(age_ranger)
 
 
 

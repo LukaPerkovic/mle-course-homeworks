@@ -1,3 +1,5 @@
+import sys
+
 from flask import Flask, request
 
 from scripts.load import load_model
@@ -22,9 +24,12 @@ def form_example():
 		if csv:
 			batch = True
 			df = transform(csv, batch)
+
 		elif not any(item is None for item in [str(country), str(sex), int(age)]):
 			batch = False
 			df = transform([country, sex, age], batch)
+
+		
 
 		score = serve(df, batch)
 
