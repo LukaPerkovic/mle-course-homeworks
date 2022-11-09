@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: suicide-api
+spec:
+  template:
+    metadata:
+      name: suicide-api-pod
+    spec:
+      containers:
+      - name: suicide-api
+        image: lukaperkovic/suicide-api
+      restartPolicy: Never
