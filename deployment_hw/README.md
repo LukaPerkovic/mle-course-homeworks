@@ -35,10 +35,10 @@ First start the cluster.
 For minikube is simple as ```minikube start```
 
 To deploy
-```kubectl create deployment suicide --image=lukaperkovic/suicide-api:latest```
+```minikube kubectl -- create deployment suicide --image=lukaperkovic/suicide-api:latest```
 
 To expose:
-```kubectl expose deployment suicide --port 5000 --type=LoadBalancer --name suicide-service```
+```minikube kubectl -- expose deployment suicide --port 5000 --type=LoadBalancer --name suicide-service```
 
 
 To find out what URL is the app available run: ```minikube service list```
