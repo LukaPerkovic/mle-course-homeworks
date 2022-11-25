@@ -21,6 +21,7 @@ Pipepine steps:
 #### Installation:
 
 1. Clone the repository and navigate to /pipeline_hw
+2. Run the command line  ```chmod -R 777 .```
 2. There run the command:
 ```docker build . --tag extending_airflow:latest``` .
 This step is needed in order to enable writing requirements.txt in Production environment, but as well to install JDK, Hadoop, and Spark dependencies needed for Pyspark.
